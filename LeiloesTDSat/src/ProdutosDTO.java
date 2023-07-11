@@ -13,6 +13,10 @@ public class ProdutosDTO {
     private Integer valor;
     private String status;
 
+    ProdutosDTO(String nome, double valorDouble, String status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getId() {
         return id;
     }
