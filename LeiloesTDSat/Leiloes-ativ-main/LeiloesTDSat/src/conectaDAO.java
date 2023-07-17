@@ -29,5 +29,9 @@ public class conectaDAO {
         }
         return conn;
     }
+
+    void desconectarDB() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
