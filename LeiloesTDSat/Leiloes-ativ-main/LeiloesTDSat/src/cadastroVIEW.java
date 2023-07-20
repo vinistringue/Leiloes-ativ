@@ -2,11 +2,11 @@
 import javax.swing.JOptionPane;
 
 public class cadastroVIEW extends javax.swing.JFrame {
-
+    
     public cadastroVIEW() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -121,7 +121,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastroNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroNomeActionPerformed
-
+        
 
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
@@ -129,17 +129,17 @@ public class cadastroVIEW extends javax.swing.JFrame {
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
         String status = "A Venda";
-
+        
         if (nome.isEmpty() || valor.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos antes de cadastrar o produto.");
         } else {
             try {
                 double valorDouble = Double.parseDouble(valor);
                 ProdutosDTO produto = new ProdutosDTO(nome, valorDouble, status);
-
+                
                 ProdutosDAO produtodao = new ProdutosDAO();
                 produtodao.cadastrarProduto(produto);
-
+                
                 JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                 limparCampos();
             } catch (NumberFormatException ex) {
@@ -160,11 +160,9 @@ public class cadastroVIEW extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        cadastroVIEW telaPrincipal = new cadastroVIEW();
+        telaPrincipal.setVisible(true);
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
