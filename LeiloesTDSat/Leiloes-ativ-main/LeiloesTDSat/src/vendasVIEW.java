@@ -8,7 +8,10 @@ public class vendasVIEW extends javax.swing.JFrame {
     private DefaultTableModel tabelaVendido;
 
     public vendasVIEW() {
+        
+        ProdutosDAO produtos = new ProdutosDAO();
         initComponents();
+        listarTabelaProdutosVendidos();
         setLocationRelativeTo(null);
         this.addTable("Vendido");
     }
@@ -185,6 +188,10 @@ public class vendasVIEW extends javax.swing.JFrame {
         conexao.desconectarDB();
     }
 }
+
+    private void listarTabelaProdutosVendidos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 }

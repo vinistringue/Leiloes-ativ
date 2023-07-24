@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class ProdutosDAO {
 
@@ -171,5 +172,51 @@ public class ProdutosDAO {
     List<ProdutosDTO> listaTableVendas(String statusVenda) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public DefaultTableModel listarTabelasProdutosVendidos() {
+        DefaultTableModel tabelaProdutosVendidos = new DefaultTableModel(
+            new Object[]{"Id", "Nome", "Valor", "Status"},
+            0 // Começa com 0 linhas para ser preenchido posteriormente
+        );
 
+        try {
+            conn = new conectaDAO().connectDB();
+            String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+            prep = conn.prepareStatement(sql);
+            resultset = prep.executeQuery();
+
+            while (resultset.next()) {
+                int id = resultset.getInt("id");
+                String nome = resultset.getString("nome");
+                int valor = resultset.getInt("valor");
+                String status = resultset.getString("status");
+
+                // Adiciona os valores na tabela
+                tabelaProdutosVendidos.addRow(new Object[]{id, nome, valor, status});
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao listar produtos vendidos: " + e.getMessage());
+        } finally {
+            // Feche os recursos (prep, resultset e conexão) aqui, se necessário.
+            try {
+                if (resultset != null) {
+                    resultset.close();
+                }
+                if (prep != null) {
+                    prep.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+
+        return tabelaProdutosVendidos;
+    }
+
+    // Restante do código...
 }
+
+
